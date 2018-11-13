@@ -1,0 +1,10 @@
+#!/bin/bash
+
+restart() {
+    pkill love
+    love src &
+}
+
+restart
+
+while inotifywait -r -q -e close_write src/ 1>/dev/null; do restart; done
